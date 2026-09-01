@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#f7f5f0" />
+  <title>旅程册 · 行程规划</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <div class="brand"><span class="brand-mark"><i data-lucide="compass"></i></span><span>旅程册</span></div>
+      <div class="top-actions"><button class="icon-btn" aria-label="搜索"><i data-lucide="search"></i></button><button class="avatar">L</button></div>
+    </header>
+
+    <main>
+      <section class="trip-head">
+        <div><p class="eyebrow">MY TRIP · 2026</p><h1>东京，慢慢走</h1><p class="muted"><i data-lucide="calendar-days"></i> 10月3日 — 10月6日 <span class="dot">·</span> 4天3夜</p></div>
+        <button class="ghost-btn" id="shareBtn"><i data-lucide="share-2"></i><span>分享行程</span></button>
+      </section>
+
+      <section class="date-strip" id="dateStrip"></section>
+
+      <section class="overview-grid">
+        <div class="timeline-panel">
+          <div class="section-title"><div><p class="eyebrow">DAY <span id="dayIndex">01</span></p><h2 id="dayTitle">抵达 · 城市初见</h2></div><button class="add-btn" id="addTop"><i data-lucide="plus"></i><span>添加行程</span></button></div>
+          <div class="day-meta"><span><i data-lucide="map-pin"></i><b id="dayPlace">浅草 · 上野</b></span><span><i data-lucide="footprints"></i><span id="dayDistance">约 8.6 km 步行</span></span><span><i data-lucide="cloud-sun"></i> 22° / 多云</span></div>
+          <div class="timeline" id="timeline"></div>
+          <div class="empty-state" id="emptyState"><i data-lucide="map"></i><strong>这一天还没有安排</strong><span>把想去的地方放进时间线上吧</span><button class="add-btn" id="addEmpty"><i data-lucide="plus"></i>添加第一站</button></div>
+        </div>
+
+        <aside class="side-panel">
+          <div class="map-card"><div class="map-image"><div class="map-overlay"><span class="map-label"><i data-lucide="navigation"></i> 东京 · 3 个地点</span></div><span class="pin pin-a"></span><span class="pin pin-b"></span><span class="pin pin-c"></span><svg class="route-line" viewBox="0 0 340 220" preserveAspectRatio="none"><path d="M82 152 C120 118 125 166 173 132 S238 88 275 48" /></svg></div><div class="map-footer"><span><i data-lucide="route"></i> 今日路线</span><b id="mapStops">3 个地点</b></div></div>
+          <div class="stats-card"><div class="card-heading"><span>今日概览</span><i data-lucide="bar-chart-3"></i></div><div class="stats-row"><div><strong id="statCount">3</strong><span>行程</span></div><div><strong id="statHours">6.5h</strong><span>预计耗时</span></div><div><strong id="statBudget">¥1,280</strong><span>预估花费</span></div></div><div class="progress-wrap"><div class="progress-label"><span>准备度</span><b>68%</b></div><div class="progress"><span></span></div></div></div>
+          <div class="note-card"><div class="note-icon"><i data-lucide="sticky-note"></i></div><div><strong>旅途备忘</strong><p id="noteText">Suica 已充值 · 记得带轻便雨伞</p></div><button class="mini-btn" id="editNote" aria-label="编辑备忘"><i data-lucide="pencil"></i></button></div>
+        </aside>
+      </section>
+    </main>
+  </div>
+
+  <dialog id="tripDialog"><form method="dialog" id="tripForm"><div class="modal-head"><div><p class="eyebrow">ITINERARY</p><h2 id="modalTitle">添加行程</h2></div><button class="icon-btn" value="cancel" aria-label="关闭"><i data-lucide="x"></i></button></div><input type="hidden" id="editId"><div class="form-grid"><label>日期<select id="formDate"></select></label><label>开始时间<input id="formTime" type="time" required></label><label class="wide">目的地<input id="formPlace" placeholder="例如：浅草寺" required></label><label class="wide">游玩项目<input id="formActivity" placeholder="例如：参拜、拍照、午餐" required></label><label>路线 / 交通<input id="formRoute" placeholder="步行 12 分钟"></label><label>耗时<input id="formDuration" placeholder="约 1 小时"></label><label class="wide">备注<textarea id="formNotes" rows="2" placeholder="想记下什么？"></textarea></label></div><div class="modal-foot"><button class="text-btn danger" type="button" id="deleteBtn">删除</button><div><button class="ghost-btn" value="cancel">取消</button><button class="add-btn" value="default" type="submit"><i data-lucide="check"></i>保存行程</button></div></div></form></dialog>
+  <div class="toast" id="toast"></div>
+  <script src="app.js"></script>
+</body></html>
